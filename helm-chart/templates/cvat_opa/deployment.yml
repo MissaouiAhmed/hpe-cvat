@@ -45,6 +45,9 @@ spec:
             - --set=bundles.cvat.polling.max_delay_seconds=15
           {{- with .Values.cvat.opa.resources }}
           resources:
+            limits:
+              cpu: 3
+              memory: 128Mi
           {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:

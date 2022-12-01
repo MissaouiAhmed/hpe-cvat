@@ -36,6 +36,9 @@ spec:
           imagePullPolicy: {{ .Values.cvat.frontend.imagepullpolicy }}
           {{- with .Values.cvat.frontend.resources }}
           resources:
+            limits:
+              cpu: 3
+              memory: 128Mi
           {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
