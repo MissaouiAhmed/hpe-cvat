@@ -11,6 +11,7 @@ metadata:
     {{- include "cvat.labels" . | nindent 4 }}
     app: cvat-app
     tier: opa
+    hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   selector:
     app: cvat-app

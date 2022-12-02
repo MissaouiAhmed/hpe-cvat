@@ -132,6 +132,9 @@ spec:
           command: ["/bin/chmod", "-R", "777", "/home/django"]
           {{- with .Values.cvat.backend.worker.low.resources }}
           resources:
+            limits:
+              cpu: 3
+              memory: 128Mi            
           {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
