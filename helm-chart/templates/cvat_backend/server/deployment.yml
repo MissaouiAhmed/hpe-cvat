@@ -46,10 +46,10 @@ spec:
       containers:
         - name: cvat-app-backend-server-container
           image: {{ .Values.cvat.backend.image }}:{{ .Values.cvat.backend.tag }}
-          {{- with .Values.cvat.backend.server.resources }}
           resources:
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
+            limits:
+              cpu: 3
+              memory: 128Mi
           args: ["-c", "supervisord/server.conf"]
           env:
           - name: ALLOWED_HOSTS
@@ -172,7 +172,6 @@ spec:
         - name: user-data-permission-fix
           image: busybox
           command: ["/bin/chmod", "-R", "777", "/home/django"]
-          {{- with .Values.cvat.backend.server.resources }}
           resources:
             limits:
               cpu: 3
