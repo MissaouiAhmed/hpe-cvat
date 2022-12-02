@@ -13,10 +13,7 @@ cvat:
       replicas: 1
       labels: {}
       annotations: {}
-      resources: 
-        limits: 
-          cpu: 3
-          memory: 128Mi      
+      resources: {}
       affinity: {}
       tolerations: []
       envs:
