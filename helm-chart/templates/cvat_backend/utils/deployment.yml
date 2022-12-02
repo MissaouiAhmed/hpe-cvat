@@ -47,13 +47,10 @@ spec:
         - name: cvat-app-backend-utils-container
           image: {{ .Values.cvat.backend.image }}:{{ .Values.cvat.backend.tag }}
           imagePullPolicy: {{ .Values.cvat.backend.imagepullpolicy }}
-          {{- with .Values.cvat.backend.utils.resources }}
           resources:
             limits:
               cpu: 3
               memory: 128Mi
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
           args: ["-c", "supervisord/utils.conf"]
           env:
           {{- if .Values.redis.enabled }}
@@ -128,13 +125,10 @@ spec:
         - name: user-data-permission-fix
           image: busybox
           command: ["/bin/chmod", "-R", "777", "/home/django"]
-          {{- with .Values.cvat.backend.utils.resources }}
           resources:
             limits:
               cpu: 3
-              memory: 128Mi            
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
+              memory: 128Mi
           volumeMounts:
           {{- if .Values.cvat.backend.defaultStorage.enabled }}
           - mountPath: /home/django/data

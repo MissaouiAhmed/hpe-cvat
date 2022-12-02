@@ -46,13 +46,10 @@ spec:
       containers:
         - name: cvat-app-backend-worker-webhooks-container
           image: {{ .Values.cvat.backend.image }}:{{ .Values.cvat.backend.tag }}
-          {{- with .Values.cvat.backend.worker.webhooks.resources }}
           resources:
             limits:
               cpu: 3
               memory: 128Mi
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
           args: ["-c", "supervisord/worker.webhooks.conf"]
           env:
           {{- if .Values.redis.enabled }}
