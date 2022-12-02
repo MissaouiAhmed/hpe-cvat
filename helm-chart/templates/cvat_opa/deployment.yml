@@ -43,13 +43,10 @@ spec:
             - --set=bundles.cvat.resource=/api/auth/rules
             - --set=bundles.cvat.polling.min_delay_seconds=10
             - --set=bundles.cvat.polling.max_delay_seconds=15
-          {{- with .Values.cvat.opa.resources }}
           resources:
             limits:
               cpu: 3
               memory: 128Mi
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
           ports:
           - containerPort: 8181
           {{- with .Values.cvat.opa.additionalEnv }}

@@ -34,13 +34,10 @@ spec:
         - name: cvat-frontend-app-container
           image: {{ .Values.cvat.frontend.image }}:{{ .Values.cvat.frontend.tag }}
           imagePullPolicy: {{ .Values.cvat.frontend.imagepullpolicy }}
-          {{- with .Values.cvat.frontend.resources }}
           resources:
             limits:
               cpu: 3
               memory: 128Mi
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
           ports:
           - containerPort: 80
           {{- with .Values.cvat.frontend.additionalEnv }}
