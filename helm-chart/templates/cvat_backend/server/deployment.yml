@@ -48,9 +48,6 @@ spec:
           image: {{ .Values.cvat.backend.image }}:{{ .Values.cvat.backend.tag }}
           {{- with .Values.cvat.backend.server.resources }}
           resources:
-            limits:
-              cpu: 3
-              memory: 128Mi
           {{- toYaml . | nindent 12 }}
           {{- end }}
           args: ["-c", "supervisord/server.conf"]
@@ -180,8 +177,6 @@ spec:
             limits:
               cpu: 3
               memory: 128Mi
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
           volumeMounts:
           {{- if .Values.cvat.backend.defaultStorage.enabled }}
           - mountPath: /home/django/data
